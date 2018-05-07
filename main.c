@@ -168,6 +168,7 @@ int main(int argc, char **argv) {
         }
     }
 
+
     double x12 = root(f1, f2, 1, 2, 0.00003);
     int i12 = getRootIters();
     double x23 = root(f2, f3, -1.5, -0.1, 0.00003);

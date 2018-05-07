@@ -37,19 +37,24 @@ double integral (double (*f)(double), double a, double b, double eps2) {
     double nevenPart = 0.0; // с нечетными
     double integr; // новый интеграл
     double k = (b - a) / (6 * n); // коэффициент
+    double cur;
 
     ends += f(a) + f(b);
     ends *= k;
 
+    cur = a + delta;
     for (int i = 1; i < n; ++i) {
-        evenPart += 2 * f(a + i * delta);
+        evenPart += f(cur);
+        cur += delta;
     }
-    evenPart *= k;
+    evenPart *= 2 * k;
 
+    cur = a + delta / 2;
     for (int j = 0; j < n; ++j) {
-        nevenPart += 4 * f(a + j * delta + delta / 2);
+        nevenPart += f(cur);
+        cur += delta;
     }
-    nevenPart *= k;
+    nevenPart *= 4 * k;
 
     integr = ends + evenPart + nevenPart;
 
@@ -62,10 +67,12 @@ double integral (double (*f)(double), double a, double b, double eps2) {
         ends /= 2;
         evenPart = nevenPart / 4 + evenPart / 2; // не считаем посчитанное
         nevenPart = 0.0;
+        cur = a + delta / 2;
         for (int j = 0; j < n; ++j) {
-            nevenPart += 4 * f(a + j * delta + delta / 2);
+            nevenPart += f(cur);
+            cur += delta;
         }
-        nevenPart *= k;
+        nevenPart *= 4 * k;
 
         integr = ends + evenPart + nevenPart;
 
