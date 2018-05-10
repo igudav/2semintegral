@@ -169,16 +169,16 @@ int main(int argc, char **argv) {
     }
 
 
-    double x12 = root(f1, f2, 1, 2, 0.00003);
+    double x12 = root(f1, f2, 0, 4, 0.000008);
     int i12 = getRootIters();
-    double x23 = root(f2, f3, -1.5, -0.1, 0.00003);
+    double x23 = root(f2, f3, -1, -0.5, 0.000008);
     int i23 = getRootIters();
-    double x13 = root(f1, f3, -4, -1, 0.00003);
+    double x13 = root(f1, f3, -5, -1, 0.000008);
     int i13 = getRootIters();
 
-    double res = integral(f3, x13, x23, 0.0003);
-    res += integral(f2, x23, x12, 0.0003);
-    res += integral(f1, x12, x13, 0.0003);
+    double res = integral(f3, x13, x23, 0.00015);
+    res += integral(f2, x23, x12, 0.00015);
+    res += integral(f1, x12, x13, 0.00015);
 
     printf("%lf\n", res);
 
