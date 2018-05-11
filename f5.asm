@@ -1,7 +1,4 @@
-section .rodata
-    const4 dd 4
-
-; 4 - x^2
+; 2x-1
 section .text
 global f5
 f5:
@@ -9,10 +6,10 @@ f5:
     mov ebp, esp
 
     finit
-    fild dword[const4]
     fld qword[ebp + 8]
     fld st0
-    fmulp
+    faddp
+    fld1
     fsubp
 
     leave
